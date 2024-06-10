@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using dominio;
+using Negocio;
 
 namespace negocio
 {
@@ -46,6 +47,25 @@ namespace negocio
             finally
             {
                 conexion.Close();
+            }
+        }
+
+        public void agregar(Disco nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("Insert into DISCOS (Titulo, CantidadCanciones, UrlImagenTapa) values ('" + nuevo.Titulo +"', "+ nuevo.CantidadCanciones + ", '"+ nuevo.UrlImagen + "')");
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 

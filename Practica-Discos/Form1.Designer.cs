@@ -30,6 +30,7 @@
         {
             this.dgvDiscos = new System.Windows.Forms.DataGridView();
             this.pbxDiscos = new System.Windows.Forms.PictureBox();
+            this.btnAgregar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiscos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiscos)).BeginInit();
             this.SuspendLayout();
@@ -37,7 +38,7 @@
             // dgvDiscos
             // 
             this.dgvDiscos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDiscos.Location = new System.Drawing.Point(31, 22);
+            this.dgvDiscos.Location = new System.Drawing.Point(32, 22);
             this.dgvDiscos.Name = "dgvDiscos";
             this.dgvDiscos.Size = new System.Drawing.Size(346, 298);
             this.dgvDiscos.TabIndex = 0;
@@ -52,14 +53,26 @@
             this.pbxDiscos.TabIndex = 1;
             this.pbxDiscos.TabStop = false;
             // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(32, 335);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregar.TabIndex = 2;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
             // frmDiscos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 345);
+            this.ClientSize = new System.Drawing.Size(834, 370);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pbxDiscos);
             this.Controls.Add(this.dgvDiscos);
             this.Name = "frmDiscos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DISCOS";
             this.Load += new System.EventHandler(this.frmDiscos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiscos)).EndInit();
@@ -72,6 +85,7 @@
 
         private System.Windows.Forms.DataGridView dgvDiscos;
         private System.Windows.Forms.PictureBox pbxDiscos;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }
 

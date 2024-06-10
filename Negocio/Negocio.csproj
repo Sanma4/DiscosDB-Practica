@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiscoDataBase.cs" />
+    <Compile Include="AccesoDatos.cs" />
+    <Compile Include="DiscosNegocio.cs" />
+    <Compile Include="estiloNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -8,7 +8,7 @@ using dominio;
 
 namespace negocio
 {
-    public class DiscoDataBase
+    public class DiscosNegocio
     {
         public List<Disco> listar()
         {

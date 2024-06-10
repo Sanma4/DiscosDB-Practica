@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using dominio;
 using negocio;
+using Negocio;
 
 namespace Practica_Discos
 {
     public partial class frmDiscos : Form
     {
         private List<Disco> ListaDiscos;
+        private List<Estilo> ListaEstilos;
         public frmDiscos()
         {
             InitializeComponent();
@@ -22,11 +24,16 @@ namespace Practica_Discos
 
         private void frmDiscos_Load(object sender, EventArgs e)
         {
-            DiscoDataBase dataBase = new DiscoDataBase();
-            ListaDiscos = dataBase.listar();
-            dgvDiscos.DataSource = ListaDiscos;
-            dgvDiscos.Columns["UrlImagen"].Visible = false;
-            cargarImagen(ListaDiscos[0].UrlImagen);
+            //DiscosNegocio dataBase = new DiscosNegocio();
+            //ListaDiscos = dataBase.listar();
+            //dgvDiscos.DataSource = ListaDiscos;
+            //dgvDiscos.Columns["UrlImagen"].Visible = false;
+            //cargarImagen(ListaDiscos[0].UrlImagen);
+
+            estiloNegocio dataBase = new estiloNegocio();
+            ListaEstilos = dataBase.listar();
+            dgvDiscos.DataSource = ListaEstilos;
+
 
         }
 
@@ -47,8 +54,8 @@ namespace Practica_Discos
 
         private void dgvDiscos_SelectionChanged(object sender, EventArgs e)
         {
-            Disco selecionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
-            cargarImagen(selecionado.UrlImagen);
+            //Disco selecionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
+            //cargarImagen(selecionado.UrlImagen);
         }
     }
 }

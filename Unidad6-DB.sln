@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34902.65
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Practica-Discos", "Practica-Discos\Practica-Discos.csproj", "{04E5411C-1F97-432D-B7EB-CF6D1ED6DC84}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dominio", "dominio\dominio.csproj", "{C9F89E64-B3F3-4F34-B46B-C71D13DFEEA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "negocio", "Negocio\negocio.csproj", "{169159A8-EB03-4911-BFA0-DB2B08EF61D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{04E5411C-1F97-432D-B7EB-CF6D1ED6DC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04E5411C-1F97-432D-B7EB-CF6D1ED6DC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04E5411C-1F97-432D-B7EB-CF6D1ED6DC84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9F89E64-B3F3-4F34-B46B-C71D13DFEEA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F89E64-B3F3-4F34-B46B-C71D13DFEEA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F89E64-B3F3-4F34-B46B-C71D13DFEEA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F89E64-B3F3-4F34-B46B-C71D13DFEEA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{169159A8-EB03-4911-BFA0-DB2B08EF61D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{169159A8-EB03-4911-BFA0-DB2B08EF61D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{169159A8-EB03-4911-BFA0-DB2B08EF61D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{169159A8-EB03-4911-BFA0-DB2B08EF61D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

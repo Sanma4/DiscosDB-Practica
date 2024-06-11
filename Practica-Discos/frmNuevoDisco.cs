@@ -39,7 +39,7 @@ namespace Practica_Discos
                 nuevo.CantidadCanciones = int.Parse(txtCantidad.Text);
                 nuevo.UrlImagen = txtTapa.Text;
                 nuevo.Estilo = (Estilo)cboEstilo.SelectedItem;
-                nuevo.tipoDisco = (tipoDisco)cboTipoDisco.SelectedItem;
+                nuevo.Tipo = (tipoDisco)cboTipoDisco.SelectedItem;
 
                 negocio.agregar(nuevo);
                 MessageBox.Show("Agregado exitosamente");

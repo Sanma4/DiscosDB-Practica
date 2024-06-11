@@ -34,8 +34,8 @@ namespace negocio
                     aux.UrlImagen = (string)lector["UrlImagenTapa"];
                     aux.Estilo = new Estilo();
                     aux.Estilo.Descripcion = (string)lector["Estilo"];
-                    aux.tipoDisco = new tipoDisco();
-                    aux.tipoDisco.Descripcion = (string)lector["Tipo"];
+                    aux.Tipo = new tipoDisco();
+                    aux.Tipo.Descripcion = (string)lector["Tipo"];
 
                     lista.Add(aux);
                 }
@@ -57,7 +57,12 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Insert into DISCOS (Titulo, CantidadCanciones, UrlImagenTapa, IdEstilo, IdTipoEdicion) values ('"+ nuevo.Titulo+ "', "+ nuevo.CantidadCanciones + ", '"+ nuevo.UrlImagen+"', "+ nuevo.Estilo +", "+ nuevo.tipoDisco +")");
+                datos.setearConsulta("Insert into DISCOS (Titulo, CantidadCanciones, UrlImagenTapa, IdEstilo, IdTipoEdicion) values (@Titulo ,@CantidadCanciones, @UrlImagen,@IdEstilo, @IdTipo)");
+                datos.setearParametros("@Titulo", nuevo.Titulo );
+                datos.setearParametros("@CantidadCanciones", nuevo.CantidadCanciones);
+                datos.setearParametros("@UrlImagen", nuevo.UrlImagen);
+                datos.setearParametros("@IdEstilo", nuevo.Estilo.Id);
+                datos.setearParametros("@IdTipo", nuevo.Tipo.Id);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

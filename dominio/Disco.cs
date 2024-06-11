@@ -13,7 +13,7 @@ namespace dominio
         public string UrlImagen { get; set; }
         public Estilo Estilo { get; set; }
 
-        public tipoDisco tipoDisco { get; set; }
+        public tipoDisco Tipo { get; set; }
 
     }
 }

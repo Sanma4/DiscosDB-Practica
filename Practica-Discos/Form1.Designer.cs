@@ -40,13 +40,13 @@
             this.dgvDiscos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDiscos.Location = new System.Drawing.Point(32, 22);
             this.dgvDiscos.Name = "dgvDiscos";
-            this.dgvDiscos.Size = new System.Drawing.Size(346, 298);
+            this.dgvDiscos.Size = new System.Drawing.Size(444, 298);
             this.dgvDiscos.TabIndex = 0;
             this.dgvDiscos.SelectionChanged += new System.EventHandler(this.dgvDiscos_SelectionChanged);
             // 
             // pbxDiscos
             // 
-            this.pbxDiscos.Location = new System.Drawing.Point(407, 22);
+            this.pbxDiscos.Location = new System.Drawing.Point(496, 22);
             this.pbxDiscos.Name = "pbxDiscos";
             this.pbxDiscos.Size = new System.Drawing.Size(341, 298);
             this.pbxDiscos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -67,7 +67,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 370);
+            this.ClientSize = new System.Drawing.Size(873, 370);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pbxDiscos);
             this.Controls.Add(this.dgvDiscos);

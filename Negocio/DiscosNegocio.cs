@@ -21,7 +21,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server= .\\SQLEXPRESS; database= DISCOS_DB; integrated security= true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select D.Titulo, D.CantidadCanciones, D.UrlImagenTapa, E.Descripcion Estilo from DISCOS D, ESTILOS E where E.Id = D.IdEstilo";
+                comando.CommandText = "Select D.Titulo, D.CantidadCanciones, D.UrlImagenTapa, E.Descripcion Estilo, T.Descripcion Tipo from DISCOS D, ESTILOS E, TIPOSEDICION T where E.Id = D.IdEstilo AND D.IdTipoEdicion = T.Id";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -34,6 +34,8 @@ namespace negocio
                     aux.UrlImagen = (string)lector["UrlImagenTapa"];
                     aux.Estilo = new Estilo();
                     aux.Estilo.Descripcion = (string)lector["Estilo"];
+                    aux.tipoDisco = new tipoDisco();
+                    aux.tipoDisco.Descripcion = (string)lector["Tipo"];
 
                     lista.Add(aux);
                 }
@@ -55,7 +57,7 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("Insert into DISCOS (Titulo, CantidadCanciones, UrlImagenTapa) values ('" + nuevo.Titulo +"', "+ nuevo.CantidadCanciones + ", '"+ nuevo.UrlImagen + "')");
+                datos.setearConsulta("Insert into DISCOS (Titulo, CantidadCanciones, UrlImagenTapa, IdEstilo, IdTipoEdicion) values ('"+ nuevo.Titulo+ "', "+ nuevo.CantidadCanciones + ", '"+ nuevo.UrlImagen+"', "+ nuevo.Estilo +", "+ nuevo.tipoDisco +")");
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

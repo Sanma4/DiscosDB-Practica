@@ -74,28 +74,28 @@
             this.txtNombre.Location = new System.Drawing.Point(141, 33);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(148, 20);
-            this.txtNombre.TabIndex = 3;
+            this.txtNombre.TabIndex = 0;
             // 
             // txtCantidad
             // 
             this.txtCantidad.Location = new System.Drawing.Point(141, 88);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(148, 20);
-            this.txtCantidad.TabIndex = 4;
+            this.txtCantidad.TabIndex = 1;
             // 
             // txtTapa
             // 
             this.txtTapa.Location = new System.Drawing.Point(141, 150);
             this.txtTapa.Name = "txtTapa";
             this.txtTapa.Size = new System.Drawing.Size(148, 20);
-            this.txtTapa.TabIndex = 5;
+            this.txtTapa.TabIndex = 2;
             // 
             // btnAceptar
             // 
             this.btnAceptar.Location = new System.Drawing.Point(70, 320);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(74, 23);
-            this.btnAceptar.TabIndex = 6;
+            this.btnAceptar.TabIndex = 5;
             this.btnAceptar.Text = "Aceptar";
             this.btnAceptar.UseVisualStyleBackColor = true;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
@@ -105,7 +105,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(201, 320);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(72, 23);
-            this.btnCancelar.TabIndex = 7;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -126,7 +126,7 @@
             this.cboEstilo.Location = new System.Drawing.Point(141, 213);
             this.cboEstilo.Name = "cboEstilo";
             this.cboEstilo.Size = new System.Drawing.Size(148, 21);
-            this.cboEstilo.TabIndex = 10;
+            this.cboEstilo.TabIndex = 3;
             // 
             // lblTipoDisco
             // 
@@ -144,7 +144,7 @@
             this.cboTipoDisco.Location = new System.Drawing.Point(141, 274);
             this.cboTipoDisco.Name = "cboTipoDisco";
             this.cboTipoDisco.Size = new System.Drawing.Size(148, 21);
-            this.cboTipoDisco.TabIndex = 12;
+            this.cboTipoDisco.TabIndex = 4;
             // 
             // frmNuevoDisco
             // 

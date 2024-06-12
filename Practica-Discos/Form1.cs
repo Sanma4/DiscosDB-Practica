@@ -24,16 +24,29 @@ namespace Practica_Discos
 
         private void frmDiscos_Load(object sender, EventArgs e)
         {
-            DiscosNegocio database = new DiscosNegocio();
-            ListaDiscos = database.listar();
-            dgvDiscos.DataSource = ListaDiscos;
-            dgvDiscos.Columns["urlimagen"].Visible = false;
-            cargarImagen(ListaDiscos[0].UrlImagen);
-
+            cargar();
             //estiloNegocio dataBase = new estiloNegocio();
             //ListaEstilos = dataBase.listar();
             //dgvDiscos.DataSource = ListaEstilos;
 
+
+        }
+
+        private void cargar()
+        {
+            DiscosNegocio database = new DiscosNegocio();
+            try
+            {
+                ListaDiscos = database.listar();
+                dgvDiscos.DataSource = ListaDiscos;
+                dgvDiscos.Columns["urlimagen"].Visible = false;
+                cargarImagen(ListaDiscos[0].UrlImagen);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
@@ -62,6 +75,7 @@ namespace Practica_Discos
         {
             frmNuevoDisco disc = new frmNuevoDisco();
             disc.ShowDialog();
+            cargar();
         }
     }
 }

@@ -15,14 +15,18 @@ namespace Practica_Discos
 {
     public partial class frmNuevoDisco : Form
     {
+        private Disco disco = null;
         public frmNuevoDisco()
         {
             InitializeComponent();
         }
-
-
-
-
+        public frmNuevoDisco(Disco disco)
+        {
+            InitializeComponent();
+            this.disco = disco;
+            Text = "Modificar Disco";
+            
+        }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -31,18 +35,30 @@ namespace Practica_Discos
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            Disco nuevo = new Disco();
+            
             DiscosNegocio negocio = new DiscosNegocio();
             try
             {
-                nuevo.Titulo = txtNombre.Text;
-                nuevo.CantidadCanciones = int.Parse(txtCantidad.Text);
-                nuevo.UrlImagen = txtTapa.Text;
-                nuevo.Estilo = (Estilo)cboEstilo.SelectedItem;
-                nuevo.Tipo = (tipoDisco)cboTipoDisco.SelectedItem;
+                if (disco == null)
+                    disco = new Disco();
+          
+                disco.Titulo = txtNombre.Text;
+                disco.CantidadCanciones = int.Parse(txtCantidad.Text);
+                disco.UrlImagen = txtTapa.Text;
+                disco.Estilo = (Estilo)cboEstilo.SelectedItem;
+                disco.Tipo = (tipoDisco)cboTipoDisco.SelectedItem;
 
-                negocio.agregar(nuevo);
-                MessageBox.Show("Agregado exitosamente");
+                if( disco.Id != 0)
+                {
+                    negocio.modificar(disco);
+                    MessageBox.Show("Modificado exitosamente");
+                }
+                else
+                {
+                    negocio.agregar(disco);
+                    MessageBox.Show("Agregado exitosamente");
+                }
+
             }
             catch (Exception ex)
             {
@@ -62,7 +78,21 @@ namespace Practica_Discos
             try
             {
                 cboEstilo.DataSource = estiloNegocio.listar();
+                cboEstilo.ValueMember = "Id";
+                cboEstilo.DisplayMember = "Descripcion";
                 cboTipoDisco.DataSource = tipoDiscoNegocio.listar();
+                cboTipoDisco.ValueMember = "Id";
+                cboTipoDisco.DisplayMember = "Descripcion";
+
+                if(disco != null)
+                {
+                    txtNombre.Text = disco.Titulo;
+                    txtCantidad.Text = disco.CantidadCanciones.ToString();
+                    txtTapa.Text = disco.UrlImagen;
+                    cargarImagen(disco.UrlImagen);
+                    cboEstilo.SelectedValue = disco.Estilo.Id;
+                    cboTipoDisco.SelectedValue = disco.Tipo.Id;
+                }
             }
             catch (Exception ex)
             {
@@ -71,5 +101,22 @@ namespace Practica_Discos
             }
         }
 
+        private void txtTapa_Leave(object sender, EventArgs e)
+        {
+            cargarImagen(txtTapa.Text);
+        }
+
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pbxTapa.Load(imagen);
+            }
+            catch (Exception)
+            {
+
+                pbxTapa.Load("https://t4.ftcdn.net/jpg/05/17/53/57/360_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg");
+            }
+        }
     }
 }

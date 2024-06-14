@@ -22,6 +22,8 @@ namespace Practica_Discos
             InitializeComponent();
         }
 
+
+
         private void frmDiscos_Load(object sender, EventArgs e)
         {
             cargar();
@@ -40,6 +42,7 @@ namespace Practica_Discos
                 ListaDiscos = database.listar();
                 dgvDiscos.DataSource = ListaDiscos;
                 dgvDiscos.Columns["urlimagen"].Visible = false;
+                dgvDiscos.Columns["Id"].Visible = false;
                 cargarImagen(ListaDiscos[0].UrlImagen);
             }
             catch (Exception ex)
@@ -75,6 +78,15 @@ namespace Practica_Discos
         {
             frmNuevoDisco disc = new frmNuevoDisco();
             disc.ShowDialog();
+            cargar();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Disco seleccionado;
+            seleccionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
+            frmNuevoDisco modificar = new frmNuevoDisco(seleccionado);
+            modificar.ShowDialog();
             cargar();
         }
     }

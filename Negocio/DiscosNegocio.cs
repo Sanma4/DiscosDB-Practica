@@ -21,7 +21,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server= .\\SQLEXPRESS; database= DISCOS_DB; integrated security= true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select D.Titulo, D.CantidadCanciones, D.UrlImagenTapa, E.Descripcion Estilo, T.Descripcion Tipo from DISCOS D, ESTILOS E, TIPOSEDICION T where E.Id = D.IdEstilo AND D.IdTipoEdicion = T.Id";
+                comando.CommandText = "Select D.Id, D.Titulo, D.CantidadCanciones, D.UrlImagenTapa, D.IdEstilo, D.IdTipoEdicion, E.Descripcion Estilo, T.Descripcion Tipo from DISCOS D, ESTILOS E, TIPOSEDICION T where E.Id = D.IdEstilo AND D.IdTipoEdicion = T.Id";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -29,13 +29,19 @@ namespace negocio
                 while (lector.Read())
                 {
                     Disco aux = new Disco();
+                    aux.Id = (int)lector["Id"];
                     aux.Titulo = (string)lector["Titulo"];
                     aux.CantidadCanciones = (int)lector["CantidadCanciones"];
-                    aux.UrlImagen = (string)lector["UrlImagenTapa"];
+                    //if (!(lector["UrlImagen"] is DBNull)) 
+                    //{ 
+                        aux.UrlImagen = (string)lector["UrlImagenTapa"];
+                    //}
                     aux.Estilo = new Estilo();
                     aux.Estilo.Descripcion = (string)lector["Estilo"];
                     aux.Tipo = new tipoDisco();
                     aux.Tipo.Descripcion = (string)lector["Tipo"];
+                    aux.Estilo.Id = (int)lector["IdEstilo"];
+                    aux.Tipo.Id = (int)lector["IdTipoEdicion"];
 
                     lista.Add(aux);
                 }
@@ -74,6 +80,35 @@ namespace negocio
             {
                 datos.cerrarConexion();
             }
+        }
+
+        public void modificar(Disco nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                
+                datos.setearConsulta("update DISCOS set Titulo = @titulo, CantidadCanciones = @cantidad, UrlImagenTapa = @img, IdEstilo = @estilo, IdTipoEdicion = @tipo Where Id = @id");
+                
+                datos.setearParametros("@titulo", nuevo.Titulo);
+                datos.setearParametros("@cantidad", nuevo.CantidadCanciones);
+                datos.setearParametros("@img", nuevo.UrlImagen);
+                datos.setearParametros("@estilo", nuevo.Estilo.Id);
+                datos.setearParametros("@tipo", nuevo.Tipo.Id);
+                datos.setearParametros("@id", nuevo.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
         }
 
 

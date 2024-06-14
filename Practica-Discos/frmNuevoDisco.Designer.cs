@@ -40,6 +40,8 @@
             this.cboEstilo = new System.Windows.Forms.ComboBox();
             this.lblTipoDisco = new System.Windows.Forms.Label();
             this.cboTipoDisco = new System.Windows.Forms.ComboBox();
+            this.pbxTapa = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxTapa)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNombre
@@ -89,6 +91,7 @@
             this.txtTapa.Name = "txtTapa";
             this.txtTapa.Size = new System.Drawing.Size(148, 20);
             this.txtTapa.TabIndex = 2;
+            this.txtTapa.Leave += new System.EventHandler(this.txtTapa_Leave);
             // 
             // btnAceptar
             // 
@@ -146,11 +149,21 @@
             this.cboTipoDisco.Size = new System.Drawing.Size(148, 21);
             this.cboTipoDisco.TabIndex = 4;
             // 
+            // pbxTapa
+            // 
+            this.pbxTapa.Location = new System.Drawing.Point(313, 33);
+            this.pbxTapa.Name = "pbxTapa";
+            this.pbxTapa.Size = new System.Drawing.Size(301, 262);
+            this.pbxTapa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxTapa.TabIndex = 12;
+            this.pbxTapa.TabStop = false;
+            // 
             // frmNuevoDisco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(345, 379);
+            this.ClientSize = new System.Drawing.Size(634, 366);
+            this.Controls.Add(this.pbxTapa);
             this.Controls.Add(this.cboTipoDisco);
             this.Controls.Add(this.lblTipoDisco);
             this.Controls.Add(this.cboEstilo);
@@ -163,12 +176,13 @@
             this.Controls.Add(this.lblUrl);
             this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.lblNombre);
-            this.MaximumSize = new System.Drawing.Size(361, 418);
-            this.MinimumSize = new System.Drawing.Size(361, 418);
+            this.MaximumSize = new System.Drawing.Size(650, 405);
+            this.MinimumSize = new System.Drawing.Size(650, 405);
             this.Name = "frmNuevoDisco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmNuevoDisco";
+            this.Text = "Agregar Disco";
             this.Load += new System.EventHandler(this.frmNuevoDisco_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxTapa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,5 +202,6 @@
         private System.Windows.Forms.ComboBox cboEstilo;
         private System.Windows.Forms.Label lblTipoDisco;
         private System.Windows.Forms.ComboBox cboTipoDisco;
+        private System.Windows.Forms.PictureBox pbxTapa;
     }
 }

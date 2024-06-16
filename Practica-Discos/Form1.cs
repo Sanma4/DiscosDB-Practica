@@ -41,8 +41,7 @@ namespace Practica_Discos
             {
                 ListaDiscos = database.listar();
                 dgvDiscos.DataSource = ListaDiscos;
-                dgvDiscos.Columns["urlimagen"].Visible = false;
-                dgvDiscos.Columns["Id"].Visible = false;
+                ocultarColumnas();
                 cargarImagen(ListaDiscos[0].UrlImagen);
             }
             catch (Exception ex)
@@ -51,6 +50,12 @@ namespace Practica_Discos
                 throw ex;
             }
 
+        }
+
+        private void ocultarColumnas()
+        {
+            dgvDiscos.Columns["urlimagen"].Visible = false;
+            dgvDiscos.Columns["Id"].Visible = false;
         }
 
 
@@ -70,8 +75,11 @@ namespace Practica_Discos
 
         private void dgvDiscos_SelectionChanged(object sender, EventArgs e)
         {
-            Disco selecionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
-            cargarImagen(selecionado.UrlImagen);
+            if(dgvDiscos.CurrentRow != null)
+            {
+                Disco selecionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
+                cargarImagen(selecionado.UrlImagen);
+            }
         }
 
         private void btnAgregar_Click(object sender, EventArgs e)
@@ -125,6 +133,25 @@ namespace Practica_Discos
 
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<Disco> listaFiltrada;
+
+            string filtro = txtFiltro.Text;
+            if (filtro != null)
+            {
+                listaFiltrada = ListaDiscos.FindAll(x => x.Titulo.ToUpper().Contains(filtro.ToUpper()) || x.Estilo.Descripcion.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = ListaDiscos;
+            }
+            
+            dgvDiscos.DataSource = null;
+            dgvDiscos.DataSource = listaFiltrada;
+            ocultarColumnas();
         }
     }
 }

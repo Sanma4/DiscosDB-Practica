@@ -17,12 +17,11 @@ namespace Practica_Discos
     {
         private List<Disco> ListaDiscos;
         private List<Estilo> ListaEstilos;
+
         public frmDiscos()
         {
             InitializeComponent();
         }
-
-
 
         private void frmDiscos_Load(object sender, EventArgs e)
         {
@@ -57,8 +56,6 @@ namespace Practica_Discos
             dgvDiscos.Columns["urlimagen"].Visible = false;
             dgvDiscos.Columns["Id"].Visible = false;
         }
-
-
 
         private void cargarImagen(string imagen)
         {
@@ -135,12 +132,14 @@ namespace Practica_Discos
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+
+        private void txtFiltro_TextChanged(object sender, EventArgs e)
         {
             List<Disco> listaFiltrada;
 
             string filtro = txtFiltro.Text;
-            if (filtro != null)
+            if (filtro != "")
             {
                 listaFiltrada = ListaDiscos.FindAll(x => x.Titulo.ToUpper().Contains(filtro.ToUpper()) || x.Estilo.Descripcion.ToUpper().Contains(filtro.ToUpper()));
             }
@@ -148,7 +147,7 @@ namespace Practica_Discos
             {
                 listaFiltrada = ListaDiscos;
             }
-            
+
             dgvDiscos.DataSource = null;
             dgvDiscos.DataSource = listaFiltrada;
             ocultarColumnas();

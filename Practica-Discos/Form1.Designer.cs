@@ -35,13 +35,14 @@
             this.btnEliminarFisico = new System.Windows.Forms.Button();
             this.btnEliminarLogico = new System.Windows.Forms.Button();
             this.txtFiltro = new System.Windows.Forms.TextBox();
-            this.btnBuscar = new System.Windows.Forms.Button();
+            this.lblBuscar = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiscos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxDiscos)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvDiscos
             // 
+            this.dgvDiscos.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dgvDiscos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDiscos.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvDiscos.GridColor = System.Drawing.SystemColors.ActiveCaption;
@@ -55,6 +56,7 @@
             // 
             // pbxDiscos
             // 
+            this.pbxDiscos.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.pbxDiscos.Location = new System.Drawing.Point(496, 49);
             this.pbxDiscos.Name = "pbxDiscos";
             this.pbxDiscos.Size = new System.Drawing.Size(341, 298);
@@ -104,27 +106,28 @@
             // 
             // txtFiltro
             // 
-            this.txtFiltro.Location = new System.Drawing.Point(32, 23);
+            this.txtFiltro.Location = new System.Drawing.Point(87, 23);
             this.txtFiltro.Name = "txtFiltro";
             this.txtFiltro.Size = new System.Drawing.Size(187, 20);
             this.txtFiltro.TabIndex = 6;
+            this.txtFiltro.TextChanged += new System.EventHandler(this.txtFiltro_TextChanged);
             // 
-            // btnBuscar
+            // lblBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(225, 21);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 7;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.button1_Click);
+            this.lblBuscar.AutoSize = true;
+            this.lblBuscar.Location = new System.Drawing.Point(29, 26);
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(52, 13);
+            this.lblBuscar.TabIndex = 7;
+            this.lblBuscar.Text = "Buscador";
             // 
             // frmDiscos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(894, 388);
-            this.Controls.Add(this.btnBuscar);
+            this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.txtFiltro);
             this.Controls.Add(this.btnEliminarLogico);
             this.Controls.Add(this.btnEliminarFisico);
@@ -132,6 +135,9 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.pbxDiscos);
             this.Controls.Add(this.dgvDiscos);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(910, 427);
+            this.MinimumSize = new System.Drawing.Size(910, 427);
             this.Name = "frmDiscos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DISCOS";
@@ -152,7 +158,7 @@
         private System.Windows.Forms.Button btnEliminarFisico;
         private System.Windows.Forms.Button btnEliminarLogico;
         private System.Windows.Forms.TextBox txtFiltro;
-        private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Label lblBuscar;
     }
 }
 

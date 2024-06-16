@@ -89,5 +89,42 @@ namespace Practica_Discos
             modificar.ShowDialog();
             cargar();
         }
+
+        private void btnEliminarFisico_Click(object sender, EventArgs e)
+        {
+            eliminar();
+        }
+
+        private void btnEliminarLogico_Click(object sender, EventArgs e)
+        {
+            eliminar(true);
+        }
+
+        private void eliminar(bool logico = false)
+        {
+            DiscosNegocio negocio = new DiscosNegocio();
+            Disco seleccionado = new Disco();
+            try
+            {
+                DialogResult respuesta = MessageBox.Show("El disco será eliminado y no se podrá recuperar ¿Estas seguro?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Disco)dgvDiscos.CurrentRow.DataBoundItem;
+                    if(logico)
+                   
+                        negocio.eliminarLogico(seleccionado.Id);
+                    else
+                        negocio.eliminar(seleccionado.Id);
+
+                    MessageBox.Show("Eliminado exitosamente.");
+                    cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }

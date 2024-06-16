@@ -21,7 +21,7 @@ namespace negocio
             {
                 conexion.ConnectionString = "server= .\\SQLEXPRESS; database= DISCOS_DB; integrated security= true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "Select D.Id, D.Titulo, D.CantidadCanciones, D.UrlImagenTapa, D.IdEstilo, D.IdTipoEdicion, E.Descripcion Estilo, T.Descripcion Tipo from DISCOS D, ESTILOS E, TIPOSEDICION T where E.Id = D.IdEstilo AND D.IdTipoEdicion = T.Id";
+                comando.CommandText = "Select D.Id, D.Titulo, D.CantidadCanciones, D.UrlImagenTapa, D.IdEstilo, D.IdTipoEdicion, E.Descripcion Estilo, T.Descripcion Tipo from DISCOS D, ESTILOS E, TIPOSEDICION T where E.Id = D.IdEstilo AND D.IdTipoEdicion = T.Id AND D.Activo = 1";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -111,7 +111,46 @@ namespace negocio
 
         }
 
+        public void eliminar(int id)
+        {
+            AccesoDatos datos = new AccesoDatos(); 
+            try
+            {
+                datos.setearConsulta("delete from DISCOS where id = @id");
+                datos.setearParametros("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+        public void eliminarLogico(int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update DISCOS set Activo = 0 Where Id = @id");
+                datos.setearParametros("@id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
 
     }
 }

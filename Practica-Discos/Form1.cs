@@ -30,7 +30,9 @@ namespace Practica_Discos
             //ListaEstilos = dataBase.listar();
             //dgvDiscos.DataSource = ListaEstilos;
 
-
+            cboCampo.Items.Add("Cantidad de canciones");
+            cboCampo.Items.Add("Titulo");
+            cboCampo.Items.Add("Estilo");
         }
 
         private void cargar()
@@ -151,6 +153,47 @@ namespace Practica_Discos
             dgvDiscos.DataSource = null;
             dgvDiscos.DataSource = listaFiltrada;
             ocultarColumnas();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            DiscosNegocio negocio = new DiscosNegocio();
+            try
+            {
+                string campo = cboCampo.SelectedItem.ToString();
+                string criterio = cboCriterio.SelectedItem.ToString();
+                string filtro = txtFiltroAvanzado.Text;
+                dgvDiscos.DataSource = negocio.filtrar(campo, criterio, filtro);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+            
+        }
+
+        private void cboCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboCampo.SelectedItem.ToString() == "Cantidad de canciones")
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Mayor a");
+                cboCriterio.Items.Add("Menor a");
+                cboCriterio.Items.Add("Igual a");
+            }
+            else
+            {
+                cboCriterio.Items.Clear();
+                cboCriterio.Items.Add("Contiene");
+                cboCriterio.Items.Add("Comienza con");
+                cboCriterio.Items.Add("Termina con");
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

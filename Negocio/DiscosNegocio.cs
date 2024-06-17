@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using dominio;
 using Negocio;
+using System.Collections;
 
 namespace negocio
 {
@@ -152,5 +153,79 @@ namespace negocio
 
         }
 
+        public List<Disco> filtrar(string campo, string criterio, string filtro)
+        {
+            List<Disco> Lista = new List<Disco>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "Select D.Id, D.Titulo, D.CantidadCanciones, D.UrlImagenTapa, D.IdEstilo, D.IdTipoEdicion, E.Descripcion Estilo, T.Descripcion Tipo from DISCOS D, ESTILOS E, TIPOSEDICION T where E.Id = D.IdEstilo AND D.IdTipoEdicion = T.Id AND D.Activo = 1 AND ";
+
+                switch (campo)
+                {
+                    case "Cantidad de canciones":
+                        switch (criterio)
+                        {
+                            case "Mayor a":
+                                consulta += "CantidadCanciones > " + filtro;
+                            break;
+                            case "Menor a":
+                                consulta += "CantidadCanciones < " + filtro;
+                            break;
+                            default:
+                                consulta += "CantidadCanciones = " + filtro;
+                            break;
+                        }
+                    break;
+                    case "Titulo":
+                        switch (criterio)
+                        {
+                            case "Contiene":
+                                consulta += "Titulo like '% " + filtro + "%'";
+                            break;
+                            case "Comienza con":
+                                consulta += "Titulo like '" + filtro + "%'";
+                            break;
+                            default:
+                                consulta += "Titulo like '%" + filtro + "'";
+                            break;
+                        }
+                    break;
+                }
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLector();
+                while (datos.Lector.Read())
+                {
+                    Disco aux = new Disco();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Titulo = (string)datos.Lector["Titulo"];
+                    aux.CantidadCanciones = (int)datos.Lector["CantidadCanciones"];
+                    aux.UrlImagen = (string)datos.Lector["UrlImagenTapa"];
+                    aux.Estilo = new Estilo();
+                    aux.Estilo.Descripcion = (string)datos.Lector["Estilo"];
+                    aux.Tipo = new tipoDisco();
+                    aux.Tipo.Descripcion = (string)datos.Lector["Tipo"];
+                    aux.Estilo.Id = (int)datos.Lector["IdEstilo"];
+                    aux.Tipo.Id = (int)datos.Lector["IdTipoEdicion"];
+
+                    Lista.Add(aux);
+                }
+
+
+                return Lista;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
     }
 }

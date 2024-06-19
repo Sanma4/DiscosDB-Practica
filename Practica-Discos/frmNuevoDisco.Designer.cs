@@ -41,6 +41,7 @@
             this.lblTipoDisco = new System.Windows.Forms.Label();
             this.cboTipoDisco = new System.Windows.Forms.ComboBox();
             this.pbxTapa = new System.Windows.Forms.PictureBox();
+            this.btnAgregarImg = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbxTapa)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,18 +152,29 @@
             // 
             // pbxTapa
             // 
-            this.pbxTapa.Location = new System.Drawing.Point(313, 33);
+            this.pbxTapa.Location = new System.Drawing.Point(329, 33);
             this.pbxTapa.Name = "pbxTapa";
-            this.pbxTapa.Size = new System.Drawing.Size(301, 262);
+            this.pbxTapa.Size = new System.Drawing.Size(285, 262);
             this.pbxTapa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxTapa.TabIndex = 12;
             this.pbxTapa.TabStop = false;
+            // 
+            // btnAgregarImg
+            // 
+            this.btnAgregarImg.Location = new System.Drawing.Point(295, 149);
+            this.btnAgregarImg.Name = "btnAgregarImg";
+            this.btnAgregarImg.Size = new System.Drawing.Size(27, 21);
+            this.btnAgregarImg.TabIndex = 13;
+            this.btnAgregarImg.Text = "+";
+            this.btnAgregarImg.UseVisualStyleBackColor = true;
+            this.btnAgregarImg.Click += new System.EventHandler(this.btnAgregarImg_Click);
             // 
             // frmNuevoDisco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 366);
+            this.Controls.Add(this.btnAgregarImg);
             this.Controls.Add(this.pbxTapa);
             this.Controls.Add(this.cboTipoDisco);
             this.Controls.Add(this.lblTipoDisco);
@@ -203,5 +215,6 @@
         private System.Windows.Forms.Label lblTipoDisco;
         private System.Windows.Forms.ComboBox cboTipoDisco;
         private System.Windows.Forms.PictureBox pbxTapa;
+        private System.Windows.Forms.Button btnAgregarImg;
     }
 }

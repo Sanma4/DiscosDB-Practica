@@ -10,11 +10,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using negocio;
 using Negocio;
+using System.IO;
+using System.Configuration;
+using System.Xml.Linq;
 
 namespace Practica_Discos
 {
     public partial class frmNuevoDisco : Form
     {
+        private OpenFileDialog archivo = null;
         private Disco disco = null;
         public frmNuevoDisco()
         {
@@ -25,7 +29,7 @@ namespace Practica_Discos
             InitializeComponent();
             this.disco = disco;
             Text = "Modificar Disco";
-            
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -35,20 +39,20 @@ namespace Practica_Discos
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            
+
             DiscosNegocio negocio = new DiscosNegocio();
             try
             {
                 if (disco == null)
                     disco = new Disco();
-          
+
                 disco.Titulo = txtNombre.Text;
                 disco.CantidadCanciones = int.Parse(txtCantidad.Text);
                 disco.UrlImagen = txtTapa.Text;
                 disco.Estilo = (Estilo)cboEstilo.SelectedItem;
                 disco.Tipo = (tipoDisco)cboTipoDisco.SelectedItem;
 
-                if( disco.Id != 0)
+                if (disco.Id != 0)
                 {
                     negocio.modificar(disco);
                     MessageBox.Show("Modificado exitosamente");
@@ -58,6 +62,13 @@ namespace Practica_Discos
                     negocio.agregar(disco);
                     MessageBox.Show("Agregado exitosamente");
                 }
+
+                if (archivo != null && !(txtTapa.Text.ToLower().Contains("http")))
+                {
+                    File.Copy(archivo.FileName, ConfigurationManager.AppSettings["images-folder"] + archivo.SafeFileName);
+
+                }
+
 
             }
             catch (Exception ex)
@@ -70,6 +81,8 @@ namespace Practica_Discos
                 Close();
             }
         }
+
+    
 
         private void frmNuevoDisco_Load(object sender, EventArgs e)
         {
@@ -101,6 +114,7 @@ namespace Practica_Discos
             }
         }
 
+
         private void txtTapa_Leave(object sender, EventArgs e)
         {
             cargarImagen(txtTapa.Text);
@@ -117,6 +131,24 @@ namespace Practica_Discos
 
                 pbxTapa.Load("https://t4.ftcdn.net/jpg/05/17/53/57/360_F_517535712_q7f9QC9X6TQxWi6xYZZbMmw5cnLMr279.jpg");
             }
+        }
+
+        private void btnAgregarImg_Click(object sender, EventArgs e)
+        {
+            archivo = new OpenFileDialog();
+            archivo.Filter = "JPEG|*.JPEG| JPG|*.jpg |png|*.png ";
+            List<OpenFileDialog> lista = new List<OpenFileDialog>();
+            if (archivo.ShowDialog() == DialogResult.OK)
+            {
+                    txtTapa.Text = archivo.FileName;
+                    cargarImagen(archivo.FileName);
+
+                    lista.Add(archivo);
+                //Guardar img
+
+                //File.Copy(archivo.FileName, ConfigurationManager.AppSettings["DiscosAPP"]);
+            }
+
         }
     }
 }
